@@ -2,19 +2,24 @@ const epxress = require("express");
 
 const app = epxress();
 
-app.use("/", (req, res) => {
-    res.send("Hello from the server!1")
+
+app.get("/user", (req, res) => {
+    res.send({
+        firstname: "manohar",
+        lastname: "jha"
+    })
 })
 
-app.use("/hello", (req, res) => {
-    res.send("Hello from the hello!")
+app.post("/user", (req, res) => {
+    // Save Data to the Database
+    res.send("Data Successfully saved to the database");
 })
 
-app.use("/test", (req, res) => {
-    res.send("Hello from the test!")
+app.delete("/user", (req, res) => {
+    res.send("Data Delete Successfully");
 })
 
-app.listen(4000, () => {
+app.listen(3000, () => {
     console.log("Server is successfully on port 3000....");
 
 });
