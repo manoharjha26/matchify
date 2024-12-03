@@ -3,20 +3,13 @@ const epxress = require("express");
 const app = epxress();
 
 
-app.get("/user", (req, res) => {
-    res.send({
-        firstname: "manohar",
-        lastname: "jha"
-    })
-})
-
-app.post("/user", (req, res) => {
-    // Save Data to the Database
-    res.send("Data Successfully saved to the database");
-})
-
-app.delete("/user", (req, res) => {
-    res.send("Data Delete Successfully");
+app.use("/user", (req, res, next) => {
+    console.log("Handling the route user 1!")
+    res.send("Response 1")
+    next();
+}, (req, res) => {
+    console.log("Handling the route user 2!");
+    res.send("Response 2")
 })
 
 app.listen(3000, () => {
