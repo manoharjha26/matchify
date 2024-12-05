@@ -1,25 +1,32 @@
 const epxress = require("express");
-const { adminAuth, userAuth } = require("./middlewares/auth");
 
 const app = epxress();
 
-app.use("/admin", adminAuth)
+// app.use("/", (err, req, res, next) => {
+//     if (err) {
+//         res.status(500).send("Something went wrong")
+//     }
+// })
 
-app.get("/user/data", userAuth, (req, res) => {
-    res.send("User login Successfully")
+app.get("/getUserData", (req, res) => {
+    // Logic of DB call and user data
+    try {
+        res.send("User Data Send")
+        // throw new Error("ncxjhf");
+    } catch (error) {
+        res.status(500).send("Some Error Contact Support team.")
+    }
+
 })
 
-app.get("/admin/getAllData", (req, res) => {
-    res.send("All Data Send")
+app.use("/", (err, req, res, next) => {
+    if (err) {
+        res.status(500).send("Something went wrong")
+    }
 })
 
-app.get("/admin/deleteUser", (req, res) => {
-    res.send("Delete a User")
-})
 
-
-
-app.listen(3000, () => {
-    console.log("Server is successfully on port 3000....");
+app.listen(7777, () => {
+    console.log("Server is successfully on port 7777....");
 
 });
